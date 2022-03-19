@@ -1,11 +1,8 @@
 package com.g.tragosapp.ui.viewmodel
 
-import android.widget.TextView
-import androidx.appcompat.view.menu.MenuView
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.liveData
-import androidx.lifecycle.viewModelScope
 import com.g.tragosapp.data.model.Drink
 import com.g.tragosapp.databinding.FragmentMainBinding
 import com.g.tragosapp.databinding.FragmentTragosDetalleBinding
@@ -25,14 +22,14 @@ class MainViewModel(private val repo:Repo):ViewModel() {
     val fetchTragosList = liveData(Dispatchers.IO) {
         emit(Resource.Loading)
         try {
-            emit(repo.getTragosList())
+            emit(repo.getTragosList("Margarita"))
         }catch (e:Exception){
             emit(Resource.Failure(e))
         }
     }
 
     fun setDetails(drink: Drink){
-        bindingD.lista.text = drink.descripcion
+        bindingD.lista.text = drink.strInstructions
     }
 }
 

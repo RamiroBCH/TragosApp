@@ -40,9 +40,9 @@ class MainAdapter(
     inner class MainViewHolder(val binding: TragosRowBinding) :
         BaseViewHolder<Drink>(binding.root) {
         override fun bind(item: Drink, position: Int) = with(binding) {
-            Glide.with(context).load(item.image).centerCrop().into(imgTrago)
-            txtTitulo.text = item.nombre
-            txtDescripcion.text = item.descripcion
+            Glide.with(context).load(item.strDrinkThumb).centerCrop().into(imgTrago)
+            txtTitulo.text = item.strDrink
+            txtDescripcion.text = item.strInstructions
             itemView.setOnClickListener { itemClickListener?.onTragoClick(item) }
         }
     }
