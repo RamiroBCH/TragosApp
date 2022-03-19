@@ -17,5 +17,7 @@
         android:id="@+id/tragosDetalleFragment"
         android:name="com.g.tragosapp.ui.TragosDetalleFragment"
         android:label="Detalles"
-        tools:layout="@layout/fragment_tragos_detalle" />
+        tools:layout="@layout/fragment_tragos_detalle" >
+        <argument android:name="nombre" />
+    </fragment>
 </navigation>

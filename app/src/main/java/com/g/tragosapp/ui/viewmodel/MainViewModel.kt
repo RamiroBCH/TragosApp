@@ -1,23 +1,19 @@
 package com.g.tragosapp.ui.viewmodel
 
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.liveData
+import android.widget.Toast
+import android.widget.Toast.makeText
+import androidx.lifecycle.*
+import com.g.tragosapp.R
 import com.g.tragosapp.data.model.Drink
 import com.g.tragosapp.databinding.FragmentMainBinding
 import com.g.tragosapp.databinding.FragmentTragosDetalleBinding
 import com.g.tragosapp.domain.Repo
+import com.g.tragosapp.ui.MainFragment
 import com.g.tragosapp.vo.Resource
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 
 class MainViewModel(private val repo:Repo):ViewModel() {
-
-    private var _binding: FragmentMainBinding? = null
-    private val binding get() = _binding!!
-
-    private var _bindingD: FragmentTragosDetalleBinding? = null
-    private val bindingD get() = _bindingD!!
-
 
     val fetchTragosList = liveData(Dispatchers.IO) {
         emit(Resource.Loading)
@@ -26,10 +22,6 @@ class MainViewModel(private val repo:Repo):ViewModel() {
         }catch (e:Exception){
             emit(Resource.Failure(e))
         }
-    }
-
-    fun setDetails(drink: Drink){
-        bindingD.lista.text = drink.strInstructions
     }
 }
 

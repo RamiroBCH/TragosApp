@@ -11,8 +11,7 @@ import com.g.tragosapp.databinding.TragosRowBinding
 
 class MainAdapter(
     private val context: Context, private val tragosList: List<Drink>,
-    private val itemClickListener: OnTragoClickListener?
-) :
+    private val itemClickListener: OnTragoClickListener) :
     RecyclerView.Adapter<BaseViewHolder<*>>() {
 
     interface OnTragoClickListener {
@@ -43,7 +42,7 @@ class MainAdapter(
             Glide.with(context).load(item.strDrinkThumb).centerCrop().into(imgTrago)
             txtTitulo.text = item.strDrink
             txtDescripcion.text = item.strInstructions
-            itemView.setOnClickListener { itemClickListener?.onTragoClick(item) }
+            itemView.setOnClickListener { itemClickListener.onTragoClick(item) }
         }
     }
 
