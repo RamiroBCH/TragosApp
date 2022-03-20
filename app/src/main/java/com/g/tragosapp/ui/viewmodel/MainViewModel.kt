@@ -15,12 +15,22 @@ import kotlinx.coroutines.withContext
 
 class MainViewModel(private val repo:Repo):ViewModel() {
 
-    val fetchTragosList = liveData(Dispatchers.IO) {
-        emit(Resource.Loading)
-        try {
-            emit(repo.getTragosList("Margarita"))
-        }catch (e:Exception){
-            emit(Resource.Failure(e))
+    private val tragosData = MutableLiveData<String>()
+
+    fun setTrago(tragoName: String){
+        tragosData.value = tragoName
+    }
+    init {
+        setTrago("margarita")
+    }
+    val fetchTragosList = tragosData.distinctUntilChanged().switchMap { nombreTrago ->
+        liveData(Dispatchers.IO) {
+            emit(Resource.Loading)
+            try {
+                emit(repo.getTragosList(nombreTrago))
+            }catch (e:Exception){
+                emit(Resource.Failure(e))
+            }
         }
     }
 }

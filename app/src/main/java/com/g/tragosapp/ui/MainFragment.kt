@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.SearchView
 import android.widget.Toast
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.LiveData
@@ -48,6 +49,11 @@ class MainFragment : Fragment(), MainAdapter.OnTragoClickListener {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setupRecyclerView()
+        setupSearchView()
+        setupObservers()
+    }
+
+    private fun setupObservers(){
         viewModel.fetchTragosList.observe(viewLifecycleOwner, Observer { result ->
             when(result){
                 is Resource.Loading -> {
@@ -69,6 +75,20 @@ class MainFragment : Fragment(), MainAdapter.OnTragoClickListener {
         val nombre = drink.strDrink
         val action = MainFragmentDirections.actionMainFragmentToTragosDetalleFragment(nombre)
         findNavController().navigate(action)
+    }
+
+    private fun setupSearchView(){
+        binding.searchView.setOnQueryTextListener(object:SearchView.OnQueryTextListener{
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                viewModel.setTrago(query!!)
+                return false
+            }
+
+            override fun onQueryTextChange(p0: String?): Boolean {
+                return false
+            }
+
+        })
     }
 
     private fun setupRecyclerView(){

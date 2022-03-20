@@ -38,6 +38,7 @@ class TragosDetalleFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val binding = FragmentTragosDetalleBinding.bind(view)
+
         val id = navigationArgs.nombre
         binding.lista.text = id
     }
