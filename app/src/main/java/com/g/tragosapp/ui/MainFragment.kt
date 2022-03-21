@@ -8,18 +8,13 @@ import android.view.ViewGroup
 import android.widget.SearchView
 import android.widget.Toast
 import androidx.fragment.app.activityViewModels
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
-import androidx.navigation.fragment.FragmentNavigator
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.g.tragosapp.R
 import com.g.tragosapp.data.Datasource
 import com.g.tragosapp.data.model.Drink
 import com.g.tragosapp.databinding.FragmentMainBinding
-import com.g.tragosapp.databinding.FragmentTragosDetalleBinding
 import com.g.tragosapp.domain.RepoImpl
 import com.g.tragosapp.ui.viewmodel.MainViewModel
 import com.g.tragosapp.ui.viewmodel.VMFactory
@@ -72,8 +67,8 @@ class MainFragment : Fragment(), MainAdapter.OnTragoClickListener {
     }
 
     override fun onTragoClick(drink: Drink) {
-        val nombre = drink.strDrink
-        val action = MainFragmentDirections.actionMainFragmentToTragosDetalleFragment(nombre)
+        viewModel.setDrink(drink)
+        val action = MainFragmentDirections.actionMainFragmentToTragosDetalleFragment()
         findNavController().navigate(action)
     }
 

@@ -15,10 +15,16 @@ import kotlinx.coroutines.withContext
 
 class MainViewModel(private val repo:Repo):ViewModel() {
 
+    lateinit var bebida: Drink
+
+
     private val tragosData = MutableLiveData<String>()
 
     fun setTrago(tragoName: String){
         tragosData.value = tragoName
+    }
+    fun setDrink(drink: Drink){
+        bebida = drink
     }
     init {
         setTrago("margarita")
