@@ -9,11 +9,25 @@
     tools:context=".ui.TragosDetalleFragment">
 
 
-    <ImageView
-        android:id="@+id/img_trago"
-        android:layout_width="match_parent"
-        android:layout_marginTop="6dp"
-        android:layout_height="300dp"/>
+
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:id="@+id/img_trago"
+            android:layout_width="match_parent"
+            android:layout_marginTop="6dp"
+            android:layout_height="300dp"/>
+        
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/btn_guardar"
+            android:src="@drawable/ic_baseline_favorite_24"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignEnd="@id/img_trago"/>
+        
+    </RelativeLayout>
 
     <TextView
         android:id="@+id/trago_title"
@@ -29,7 +43,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="8dp"
-        android:textSize="20sp"
+        android:textSize="14sp"
         tools:text="asadasdasdasdasdasdasdasdasd"/>
 
 </LinearLayout>
