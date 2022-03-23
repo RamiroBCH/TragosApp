@@ -8,6 +8,13 @@
     android:gravity="center"
     tools:context=".ui.MainFragment">
 
+    <Button
+        android:id="@+id/btnFavoritos"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Favoritos"
+        android:textStyle="bold"/>
+
     <SearchView
         android:id="@+id/searchView"
         android:layout_width="match_parent"

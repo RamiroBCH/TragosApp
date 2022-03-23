@@ -6,12 +6,15 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import android.widget.Toast
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.navArgs
 import com.bumptech.glide.Glide
+import com.g.tragosapp.AppDatabase
 import com.g.tragosapp.R
 import com.g.tragosapp.data.Datasource
 import com.g.tragosapp.data.model.Drink
+import com.g.tragosapp.data.model.DrinkEntity
 import com.g.tragosapp.databinding.FragmentTragosDetalleBinding
 import com.g.tragosapp.domain.RepoImpl
 import com.g.tragosapp.ui.viewmodel.MainViewModel
@@ -20,7 +23,7 @@ import com.g.tragosapp.ui.viewmodel.VMFactory
 class TragosDetalleFragment : Fragment() {
 
     private val viewModel by activityViewModels<MainViewModel> {
-        VMFactory(RepoImpl(Datasource()))
+        VMFactory(RepoImpl(Datasource(AppDatabase.getDatabase(requireActivity().applicationContext))))
     }
     //private val navigationArgs: TragosDetalleFragmentArgs by navArgs()
 
@@ -44,6 +47,12 @@ class TragosDetalleFragment : Fragment() {
         Glide.with(requireContext()).load(trago.strDrinkThumb).centerCrop().into(binding.imgTrago)
         binding.tragoTitle.text = trago.strDrink
         binding.tragoDesc.text = trago.strInstructions
+
+        binding.btnGuardar.setOnClickListener{
+            viewModel.guardarTrago(DrinkEntity
+                (trago.idDrink,trago.strDrinkThumb,trago.strDrink,trago.strInstructions))
+            Toast.makeText(requireContext(),"Guardado en Favoritos",Toast.LENGTH_SHORT).show()
+        }
 
 
     }
