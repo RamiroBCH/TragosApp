@@ -43,7 +43,7 @@ class TragosDetalleFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         val binding = FragmentTragosDetalleBinding.bind(view)
-        var trago :Drink = viewModel.bebida
+        var trago: Drink = viewModel.bebida
         Glide.with(requireContext()).load(trago.strDrinkThumb).centerCrop().into(binding.imgTrago)
         binding.tragoTitle.text = trago.strDrink
         binding.tragoDesc.text = trago.strInstructions
