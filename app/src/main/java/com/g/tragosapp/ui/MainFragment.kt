@@ -14,7 +14,7 @@ import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.g.tragosapp.AppDatabase
 import com.g.tragosapp.R
-import com.g.tragosapp.data.Datasource
+import com.g.tragosapp.data.DatasourceImp
 import com.g.tragosapp.data.model.Drink
 import com.g.tragosapp.databinding.FragmentMainBinding
 import com.g.tragosapp.domain.RepoImpl
@@ -24,7 +24,7 @@ import com.g.tragosapp.vo.Resource
 
 class MainFragment : Fragment(), MainAdapter.OnTragoClickListener {
     private val viewModel by activityViewModels<MainViewModel> {
-        VMFactory(RepoImpl(Datasource(AppDatabase.getDatabase(requireActivity().applicationContext))))
+        VMFactory(RepoImpl(DatasourceImp(AppDatabase.getDatabase(requireActivity().applicationContext))))
     }
 
     private var _binding: FragmentMainBinding? = null
